@@ -1,0 +1,25 @@
+{
+  "name": "kofo_new_sdk",
+  "version": "1.0.0",
+  "description": "kofo client js sdk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "binstring": "^0.2.1",
+    "eckey": "^1.0.0",
+    "eosjs-ecc": "^4.0.4",
+    "ethereumjs-util": "^6.0.0",
+    "events": "^3.0.0",
+    "lodash": "^4.17.11",
+    "loglevel": "^1.6.1",
+    "loglevel-plugin-prefix": "^0.8.4",
+    "moment": "^2.24.0",
+    "mqtt": "^2.18.8",
+    "secure-random": "^1.1.1"
+  }
+}

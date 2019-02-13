@@ -1,0 +1,40 @@
+{
+  "1550062450399_0101228000_taker_receive_h_and_create_refund_tx_locker": false,
+  "1550062450399_0101228000_taker_receive_h_and_create_refund_tx": {
+    "hValue": "135b9cc9f534b5e111da16489087f54ee1d635e2933552ab0f31bd5c571fe3a7",
+    "makerAmount": "0.010000000000000000000000000000",
+    "makerChain": "eth",
+    "makerClientId": "02a95024e899468bbe2e091444cd01366b141f1209faef9a3cf76eeb383b7dcfe1",
+    "makerCounterChainPubKey": "0x047ee4370138916819d252686cdee323c5a01c2a203e00eb3b3fb588df9c79562601615e6969375f7bea207b6051940994d1e45fc221b3073ce2a5b97dc20349b9",
+    "makerCurrency": "eth",
+    "makerFee": "0.000000000000000000000000000000",
+    "makerLocktime": 72000,
+    "makerPubKey": "0x047ee4370138916819d252686cdee323c5a01c2a203e00eb3b3fb588df9c79562601615e6969375f7bea207b6051940994d1e45fc221b3073ce2a5b97dc20349b9",
+    "roleEnum": "TAKER",
+    "settlementId": "1550062450399_0101228000",
+    "symbol": null,
+    "takerAmount": "1.000000000000000000000000000000",
+    "takerChain": "eth",
+    "takerClientId": "023fbf8ded0155ef73b25c19e20a4a92f984ffe621e8d1b0a2572e593469c1016e",
+    "takerCounterChainPubKey": "0x0421caaf99e3f0069b7889e2ebed593e2daa4d1f01575e1469787abcf02bbc012ee62e020037be4e944edf2a24d589dba389bd3a61df6f2bbc146abda7f39f69a9",
+    "takerCurrency": "zil",
+    "takerLocktime": 36000,
+    "takerOrderId": "null",
+    "takerPubKey": "0x0421caaf99e3f0069b7889e2ebed593e2daa4d1f01575e1469787abcf02bbc012ee62e020037be4e944edf2a24d589dba389bd3a61df6f2bbc146abda7f39f69a9",
+    "chain": "eth",
+    "currency": "zil",
+    "type": "taker_receive_h_and_create_refund_tx"
+  },
+  "1550062450399_0101228000_taker_hvalue": "135b9cc9f534b5e111da16489087f54ee1d635e2933552ab0f31bd5c571fe3a7",
+  "1550062450399_0101228000_taker_submit_approve_tx_locker": false,
+  "1550062450399_0101228000,taker_submit_approve_tx": {
+    "blockHeight": 3862246,
+    "gasLimit": 210000,
+    "gasPrice": 2000000000,
+    "nonce": 1,
+    "rawTransaction": "0xf8660184773594008303345094a35c9c57f23420d6d8dbdba48e5023c2cd7d84d180b844095ea7b300000000000000000000000081adec9478ece1e03bda3d10bbac89abb3ed1265000000000000000000000000000000000000000000000000000000e8d4a51000"
+  },
+  "1550062450399_0101228000_taker_approve_tx_hash": {
+    "txHash": "0xc6d2ed7c9793d2d143c6f7392124485f74619f55cb9cd48de26f13818e533291"
+  }
+}

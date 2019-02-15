@@ -57,7 +57,8 @@ function run(privateKey, kofoId, clean) {
         let {type, chain, currency, publicKey, waitSign, settlementId} = data;
         console.log(`【SIGNATURE】SIGN TYPE ${_.toUpper(data.type)} =================================================================||||||||||||||||||||||||||||||||`);
         console.table([data]);
-        let signed = await signUtil(chain, currency, waitSign, privateKey, publicKey);
+        let chain_c = _.toUpper(chain);
+        let signed = await signUtil(chain, currency, waitSign, privateKey[chain_c], publicKey);
 
         util.writeLog('SIGNATURE', `SIGN TYPE ${_.toUpper(data.type)} =================================================================||||||||||||||||||||||||||||||||`, data);
         kofo.signatureCallback(type, chain, currency, settlementId, signed);

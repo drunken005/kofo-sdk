@@ -185,6 +185,8 @@ kofo.subscribe('kofo_tx_signature', signatureTxhandler);
 * `{settlementId}_{roleEnum}_submit_approve_tx_locker` ***<u>`Boolean`</u>***
 * `{settlementId}_{roleEnum}_submit_approve_tx` ***<u>`Object`</u>***
 * `{settlementId}_{roleEnum}_approve_tx_hash` ***<u>`Object`</u>***
+*  
+* `{settlementId}_{roleEnum}_tx_complete` ***<u>`Boolean`</u>***
 
 
 * * *
@@ -200,3 +202,4 @@ ps:
 | 1.0.0 | 2019.2.2 |
 | 1.0.1 | 2019.2.11 |
 | 1.0.2 | 2019.2.12 |
+| 1.0.3 | 2019.2.15 |

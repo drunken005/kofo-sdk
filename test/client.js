@@ -42,7 +42,7 @@ function run(privateKey, kofoId, clean) {
     const kofo = Kofo.init({
         mq: 'ws://pre.corp.kofo.io:30508/mqtt',
         options: {
-            clientId: kofoId,
+            kofoId: kofoId,
             username: 'sub',
             password: '123'
         },
@@ -66,7 +66,7 @@ function run(privateKey, kofoId, clean) {
 
     let listener = function (data) {
         console.log('==============================================================kofo status notice====================================');
-        console.log(data)
+        console.table([data])
     };
 
     kofo.subscribe('kofo_status_notice', listener);

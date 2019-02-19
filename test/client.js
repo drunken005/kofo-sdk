@@ -1,43 +1,49 @@
 const Kofo = require('../index');
 const fs = require('fs');
-const util = require('../lib/utils/utils');
 const _ = require('lodash');
 const path = require('path');
 const moment = require('moment');
 const signUtil = require('./sign_util');
 
-const maker = __dirname + '/cache/maker.json';
-const taker = __dirname + '/cache/taker.json';
 
-function _read(isMaker) {
-    let data = fs.readFileSync(isMaker ? maker : taker);
-    return JSON.parse(data.toString());
-}
+//
+// const project_dir = process.env.PROJECT_DIR || process.env.PWD;
+// let file = [moment(new Date()).format('YYYY-MM-DD'), 'log'].join('.');
+// let logPath = path.join(project_dir, 'logs', file);
 
-function insertData(key, value, isMaker) {
-    let data = _read(isMaker);
-    data = Object.assign(data, {[key]: value});
+function run(privateKey, kofoId, clean, roleEnum) {
+    const cachePath = `${__dirname}/cache/${roleEnum}.json`;
 
-    fs.writeFileSync(isMaker ? maker : taker, JSON.stringify(data));
-}
+    function _read() {
+        let data = fs.readFileSync(cachePath);
+        return JSON.parse(data.toString());
+    }
 
-function readData(key, isMaker) {
-    let data = _read(isMaker);
-    return data[key];
-}
+    function insertData(key, value) {
+        let data = _read();
+        data = Object.assign(data, {[key]: value});
+        fs.writeFileSync(cachePath, JSON.stringify(data));
+    }
 
-const project_dir = process.env.PROJECT_DIR || process.env.PWD;
-const file = [moment(new Date()).format('YYYY-MM-DD'), 'log'].join('.');
-const logPath = path.join(project_dir, 'logs', file);
+    function readData(key) {
+        let data = _read();
+        return data[key];
+    }
 
-function cleanCache() {
-    fs.writeFileSync(taker, '{}');
-    fs.writeFileSync(maker, '{}');
-    fs.writeFileSync(logPath, '');
-}
+    const file = [moment(new Date()).format('YYYY-MM-DD'), 'log'].join('.');
+    const logPath = path.join(__dirname, 'logs', file);
 
+    const messagePath = path.join(__dirname, 'receiveMessage.js');
 
-function run(privateKey, kofoId, clean) {
+    const noticePath = path.join(__dirname, `${roleEnum}_notice.js`);
+
+    function cleanCache() {
+        fs.writeFileSync(cachePath, '{}');
+        fs.writeFileSync(logPath, '');
+        fs.writeFileSync(noticePath, '');
+        fs.writeFileSync(messagePath, '');
+    }
+
     clean && cleanCache();
     const kofo = Kofo.init({
         mq: 'ws://pre.corp.kofo.io:30508/mqtt',
@@ -50,7 +56,9 @@ function run(privateKey, kofoId, clean) {
         settlement: "http://pre.corp.kofo.io:30509/settlement-server",
         insertData,
         readData,
-        debug: true
+        debug: true,
+        logPath,
+        messagePath
     });
 
     let signatureTxHandler = async function (data) {
@@ -60,13 +68,16 @@ function run(privateKey, kofoId, clean) {
         let chain_c = _.toUpper(chain);
         let signed = await signUtil(chain, currency, waitSign, privateKey[chain_c], publicKey);
 
-        util.writeLog('SIGNATURE', `SIGN TYPE ${_.toUpper(data.type)} =================================================================||||||||||||||||||||||||||||||||`, data);
+        console.log('SIGNATURE', `SIGN TYPE ${_.toUpper(data.type)} =================================================================||||||||||||||||||||||||||||||||`);
+        console.table([data]);
         kofo.signatureCallback(type, chain, currency, settlementId, signed);
     };
 
     let listener = function (data) {
         console.log('==============================================================kofo status notice====================================');
-        console.table([data])
+        console.table([data]);
+        let m = `const ${data.type || 'init_sdk'} = ${JSON.stringify(data)}; \n`;
+        fs.appendFileSync(noticePath, m);
     };
 
     kofo.subscribe('kofo_status_notice', listener);

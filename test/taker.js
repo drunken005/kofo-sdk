@@ -6,8 +6,8 @@ const privateKey = {
     EOS: '5JSRAcfALhELVvTK59umFEXSzY4MkBCL3SPajSZw1BqHyoLtH79'
 };
 const kofoId = '023fbf8ded0155ef73b25c19e20a4a92f984ffe621e8d1b0a2572e593469c1016e';
-const clean = true;
+const clean = false;
 
-client.run(privateKey, kofoId, clean);
+client.run(privateKey, kofoId, clean, 'taker');
 
 

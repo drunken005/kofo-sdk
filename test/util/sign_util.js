@@ -3,32 +3,29 @@ const ecc = require('eosjs-ecc');
 const zilC = require('@zilliqa-js/crypto');
 const {Wallet: __wallet__, utils} = require("ethers");
 
-const Identifier = require('../lib/identifier/identifier');
+const Identifier = require('../../lib/identifier/identifier');
 
-function EosSign(privateKey, signObj) {
-    console.log('EOS sign ==================>', privateKey, signObj);
-    if (_.isArray(signObj)) {
-        return _.map(signObj, (doc) => {
+function EosSign(privateKey, rawTransaction) {
+    if (_.isArray(rawTransaction)) {
+        return _.map(rawTransaction, (doc) => {
             return ecc.signHash(doc, privateKey);
         })
     }
-    return ecc.signHash(signObj, privateKey);
+    return ecc.signHash(rawTransaction, privateKey);
 
 }
 
-async function EthSign(privateKey, signObj) {
-    console.log('ETH sign ==================>', privateKey, signObj);
+async function EthSign(privateKey, rawTransaction) {
     let wallet = new __wallet__(privateKey);
-    let tx = utils.parseTransaction(signObj);
+    let tx = utils.parseTransaction(rawTransaction);
     return await wallet.sign(tx);
 }
 
 /**
  * @return {string}
  */
-function ZilliqaSign(privateKey, signObj, publicKey) {
-    console.log('ZIL sign ==================>', privateKey, signObj, publicKey);
-    return zilC.sign(signObj, privateKey, publicKey);
+function ZilliqaSign(privateKey, rawTransaction, publicKey) {
+    return zilC.sign(rawTransaction, privateKey, publicKey);
 }
 
 const signMappings = {
@@ -41,14 +38,14 @@ const signMappings = {
 };
 
 
-function signProvider(chain, currency, signObj, privateKey, publicKey) {
+function signProvider(chain, currency, rawTransaction, privateKey, publicKey) {
     let identifier = new Identifier(chain, currency);
     let errMsg = `Invalid ${identifier.toString()}`;
     let _instance = signMappings[identifier.toString()];
     if (!_instance) {
         throw new Error(errMsg);
     }
-    return _instance(privateKey, signObj, publicKey);
+    return _instance(privateKey, rawTransaction, publicKey);
 }
 
 module.exports = signProvider;

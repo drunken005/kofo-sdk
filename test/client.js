@@ -41,6 +41,7 @@ function run(privateKey, kofoId, clean, roleEnum) {
         readData
     });
 
+
     let signatureTxHandler = async function (data) {
         let {type, chain, currency, publicKey, rawTransaction, settlementId} = data;
         console.log(`Kofo signature notice 【${_.toUpper(data.type)}】 :`);
@@ -54,7 +55,7 @@ function run(privateKey, kofoId, clean, roleEnum) {
     let listener = function (data) {
         console.log(`Kofo status notice 【${data.type}】 :`);
         console.log(data);
-        console.log('\n')
+        console.log('\n');
     };
 
     kofo.subscribe('kofo_status_notice', listener);

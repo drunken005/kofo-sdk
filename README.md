@@ -13,7 +13,7 @@ import {Kofo, Utils} from 'kofo-sdk';
 ### *Utils.createKofoId* 生成kofoId, pubkey, secret
 e.g
 ```$xslt
-const obj = Kofo.createkofoId();
+const obj = Utils.createkofoId();
 return:
 { kofoId: 'KOFOjNZSVTtXqSKtQNszQki6nHjt2F67GxqDeTqyBfM9nTuk',
   pubkey: '027590ba33bf9ec4afe5848b12faec5d5e7bc194f30f3ca29f121675d02b92d223',

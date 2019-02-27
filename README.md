@@ -8,7 +8,11 @@ npm install kofo-sdk --save
 const {Kofo, Utils} = require('kofo-sdk');
     or
 import {Kofo, Utils} from 'kofo-sdk';
-``` 
+```
+## DEMO
+
+### [Kofo sdk demo](https://github.com/drunken005/kofo-sdk-demo)
+
 ## APIS
 ### *Utils.createKofoId* 生成kofoId, pubkey, secret
 e.g

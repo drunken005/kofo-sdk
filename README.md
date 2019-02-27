@@ -5,18 +5,19 @@
 npm install kofo-sdk --save
 ```
 ```$xslt
-const KOFO = require('kofo-sdk');
-
-import KOFO from 'kofo-sdk';
+const {Kofo, Utils} = require('kofo-sdk');
+    or
+import {Kofo, Utils} from 'kofo-sdk';
 ``` 
 ## APIS
-### *Kofo.createKofoId* 生成kofoId 和 secret
+### *Utils.createKofoId* 生成kofoId, pubkey, secret
 e.g
 ```$xslt
 const obj = Kofo.createkofoId();
 return:
-{ kofoId: '032557ae0441f8674a14100c4eed25ba4b50cc0c6b083c1fa15da82d02318486a3',
-  secret: '8bf218ba7311136ce81659e970c3a5dd6db567c8ab83d88b5989c37e5c53a49e' 
+{ kofoId: 'KOFOjNZSVTtXqSKtQNszQki6nHjt2F67GxqDeTqyBfM9nTuk',
+  pubkey: '027590ba33bf9ec4afe5848b12faec5d5e7bc194f30f3ca29f121675d02b92d223',
+  secret: 'dafd1ae95b8bb22617a05fcc022f65c53adf6ef26ece15ab69374538533033a6' 
 }
 ```
 
@@ -132,7 +133,7 @@ kofo.subscribe('kofo_tx_signature', signatureTxhandler);
     * **`chain`** 当前交易对应的链
     * **`currency`** 当前交易币种
     * ...
-* ========================================**Apporve message(Erc20)**==============================================
+* ===================**Apporve message(Erc20**=====================
 * **授权交易消息公共字段**
     * **`roleEnum`** *MAKER, TAKER*
     * **`settlementId`** 结算订单ID
@@ -152,7 +153,7 @@ kofo.subscribe('kofo_tx_signature', signatureTxhandler);
 * **fail_approve 授权交易失败**
     * **`type`** *fail_approve*
     * **`approveTxHash`** 授权交易Hash
-* ========================================**Hash lock message**===================================================
+* ===================**Hash lock message**=====================
 * **锁定交易消息公共字段**
     * **`roleEnum`** *MAKER, TAKER*
     * **`settlementId`** 结算订单ID
@@ -172,7 +173,7 @@ kofo.subscribe('kofo_tx_signature', signatureTxhandler);
 * **fail_hash_lock 锁定交易失败**
     * **`type`** *fail_hash_lock*
     * **`lockTxHash`** 锁定交易Hash
-* ========================================**Withdraw message**====================================================
+* ===================**Withdraw message**=====================
 * **提现交易消息公共字段**
     * **`roleEnum`** *MAKER, TAKER*
     * **`settlementId`** 结算订单ID
@@ -192,7 +193,7 @@ kofo.subscribe('kofo_tx_signature', signatureTxhandler);
 * **fail_withdraw 提现交易失败**
     * **`type`** *fail_withdraw*
     * **`withdrawTxHash`** 提现交易Hash
-* ========================================**Refund message**=====================================================
+* ===================**Refund message**=====================
 * **赎回交易消息公共字段**
     * **`roleEnum`** *MAKER, TAKER*
     * **`settlementId`** 结算订单ID
@@ -212,7 +213,7 @@ kofo.subscribe('kofo_tx_signature', signatureTxhandler);
 * **fail_refund 赎回交易失败**
     * **`type`** *fail_refund*
     * **`refundTxHash`** 赎回交易Hash
-* ========================================**Complete message**=====================================================
+* ===================**Complete message**=====================
 * **complete 订单完结**
     * **`type`** *complete*
     * **`roleEnum`** *MAKER, TAKER*

@@ -11,7 +11,7 @@ import {Kofo, Utils} from 'kofo-sdk';
 ```
 ## Demo
 
-[**Kofo sdk demo**](https://github.com/drunken005/kofo-sdk-demo)
+[Kofo sdk demo](https://github.com/drunken005/kofo-sdk-demo)
 
 ## Docs
-[**documents**](https://github.com/drunken005/kofo-sdk/blob/master/docs/API.md)
+[documents](https://github.com/drunken005/kofo-sdk/blob/master/docs/API.md)

@@ -1,12 +1,12 @@
 # KOFO SDK APIS
 ## Install and import
 
-```$xslt
+```bash
 npm install kofo-sdk --save
 ```
 ```js
 const {Kofo, Utils} = require('kofo-sdk');
-    or
+
 import {Kofo, Utils} from 'kofo-sdk';
 ```
 ## Demo
@@ -14,7 +14,7 @@ import {Kofo, Utils} from 'kofo-sdk';
 [**Kofo sdk demo**](https://github.com/drunken005/kofo-sdk-demo)
 
 ## API
-* #### Utils.createKofoId()
+* #### Utils.createKofoId() 创建kofo公私钥对
     ```js
     //Create kofoId, pubkey, secret
     const obj = Utils.createkofoId();
@@ -25,31 +25,31 @@ import {Kofo, Utils} from 'kofo-sdk';
     }
     ```
 
-* #### Utils.createKofoIdByPubKey(publicKey`<String>`)
+* #### Utils.createKofoIdByPubKey(publicKey`<String>`) 通过公钥转换kofoId
     ```js
     //Create Kofo Id by public key
     Utils.createKofoIdByPubKey(kofo.pubkey);
     ```
 
-* #### Utils.sign(secret`<String>`, data`<any>`)
+* #### Utils.sign(secret`<String>`, data`<any>`) 椭圆曲线签名，在初始化sdk前
     ```js
     //Use secret for elliptic curve signature
     const signed = Utils.sign(kofo.secret, 'Hello world!');
     ```
 
-* #### Utils.verifyWithKofoId(kofoId`<String>`, signature`<String>`, data`<any>`)
+* #### Utils.verifyWithKofoId(kofoId`<String>`, signature`<String>`, data`<any>`) 使用kofoId验证签名
     ```js
     //Verify signature with kofo id
     Utils.verifyWithKofoId(kofo.kofoId, signed, 'Hello world!')
     ```
 
-* #### Utils.verifyWithPubKey(pubkey`<String>`, signature`<String>`, data`<any>`)
+* #### Utils.verifyWithPubKey(pubkey`<String>`, signature`<String>`, data`<any>`) 使用公钥验证签名
     ```js
     //Verify signature with public key
     Utils.verifyWithPubKey(kofo.pubkey, signed, 'Hello world!');
     ```
 
-* #### Kofo.init(options<`Object`>)
+* #### Kofo.init(options<`Object`>) 初始化SDK
     `options` params
     * **mqUrl**        *`String required`*  Mqtt server url
     * **mqOptions**  *`Object required`*  Mqtt connection options
@@ -82,7 +82,7 @@ import {Kofo, Utils} from 'kofo-sdk';
         readData: readData
     ```
 
-* #### Kofo.signatureCallback(type, chain, currency, settlementId, signedRawTransaction) 交易签名回调
+* #### Kofo.signatureCallback(type, chain, currency, settlementId, signedRawTransaction) 交易签名后回调
 
     * **type** 签名事件类型
     * **chain** 交易对应链
@@ -247,32 +247,25 @@ import {Kofo, Utils} from 'kofo-sdk';
     kofo.subscribe('kofo_status_notice', listener);
     ```
 
-* * *
-## client存储数据和KEY定义
+* #### client存储数据和KEY定义
+    `roleEnum = maker | taker`
+    * `{settlementId}_maker_preimage`  ***<u>`String`</u>***
+    * `{settlementId}_{roleEnum}_settlement_info`  ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_create_refund_tx_and_h_locker`       ***<u>`Boolean`</u>***
+    * `{settlementId}_{roleEnum}_hvalue` ***<u>`String`</u>***
+    * `{settlementId}_{roleEnum}_submit_hash_lock_tx_locker` ***<u>`Boolean`</u>***
+    * `{settlementId}_{roleEnum}_submit_hash_lock_tx` ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_lock_tx_hash` ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_submit_withdraw_tx_locker` ***<u>`Boolean`</u>***
+    * `{settlementId}_{roleEnum}_submit_withdraw_tx` ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_withdraw_tx_hash` ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_submit_refund_tx_locker` ***<u>`Boolean`</u>***
+    * `{settlementId}_{roleEnum}_submit_refund_tx` ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_refund_tx_hash` ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_submit_approve_tx_locker` ***<u>`Boolean`</u>***
+    * `{settlementId}_{roleEnum}_submit_approve_tx` ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_approve_tx_hash` ***<u>`Object`</u>***
+    * `{settlementId}_{roleEnum}_tx_complete` ***<u>`Boolean`</u>***
 
-#### `roleEnum = maker | taker`
-
-* `{settlementId}_maker_preimage`                          ***<u>`String`</u>***
-* `{settlementId}_{roleEnum}_settlement_info`             ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_create_refund_tx_and_h_locker`       ***<u>`Boolean`</u>***
-* `{settlementId}_{roleEnum}_hvalue` ***<u>`String`</u>***
-* `{settlementId}_{roleEnum}_submit_hash_lock_tx_locker` ***<u>`Boolean`</u>***
-* `{settlementId}_{roleEnum}_submit_hash_lock_tx` ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_lock_tx_hash` ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_submit_withdraw_tx_locker` ***<u>`Boolean`</u>***
-* `{settlementId}_{roleEnum}_submit_withdraw_tx` ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_withdraw_tx_hash` ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_submit_refund_tx_locker` ***<u>`Boolean`</u>***
-* `{settlementId}_{roleEnum}_submit_refund_tx` ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_refund_tx_hash` ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_submit_approve_tx_locker` ***<u>`Boolean`</u>***
-* `{settlementId}_{roleEnum}_submit_approve_tx` ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_approve_tx_hash` ***<u>`Object`</u>***
-* `{settlementId}_{roleEnum}_tx_complete` ***<u>`Boolean`</u>***
-
-
-* * *
-
-
-ps:
-为了安全性建议客户端需对sdk通过insertData返回的数据做持久化存储或者加密处理，SDK不会对用户的私钥或者任何敏感数据进行存储和传播
+* #### NOTE:
+    为了安全性建议客户端需对sdk通过insertData返回的数据做持久化存储或者加密处理，SDK不会对用户的私钥或者任何敏感数据进行存储和传播

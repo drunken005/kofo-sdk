@@ -45,6 +45,7 @@
     * **settlement** *`String required`*  Status server url
     * **insertData** *`Function required`*  Client provide data storage method, e.g: map `storage(key, value)`
     * **readData**   *`Function required`*  Client provide data reading method, e.g: `read(key)`
+    * **cacheEncrypt**  *`Boolean Optional`* Encrypt cache data, default <u>`true`</u>
     ```js
     let dataMap = new Map();
     const insertData = function (key, value) {
@@ -64,7 +65,8 @@
         gateway: "http://gateway.com",
         settlement: "http://settlement.com",
         insertData: insertData,
-        readData: readData
+        readData: readData,
+        cacheEncrypt: false
     ```
 
 * #### Kofo.signatureCallback(type, chain, currency, settlementId, signedRawTransaction) 交易签名后回调

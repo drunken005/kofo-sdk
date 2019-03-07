@@ -1,11 +1,4 @@
 const Kofo = require('./lib/kofo');
-const {createKofoId, createKofoIdByPubKey, sign, verifyWithPubKey, verifyWithKofoId} = require('./lib/utils/utils');
-const Utils = {
-    createKofoId,
-    createKofoIdByPubKey,
-    sign,
-    verifyWithPubKey,
-    verifyWithKofoId
-};
+const Utils = require('./lib/utils/utils');
 
 module.exports = {Kofo, Utils};

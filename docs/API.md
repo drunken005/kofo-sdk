@@ -2,7 +2,7 @@
 * #### Utils.createKofoId() 创建kofo公私钥对
     ```js
     //Create kofoId, pubkey, secret
-    const obj = Utils.createkofoId();
+    const obj = Utils.createKofoId();
     return:
     { kofoId: 'KOFOjNZSVTtXqSKtQNszQki6nHjt2F67GxqDeTqyBfM9nTuk',
       pubkey: '027590ba33bf9ec4afe5848b12faec5d5e7bc194f30f3ca29f121675d02b92d223',

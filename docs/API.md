@@ -9,7 +9,7 @@
       secret: 'dafd1ae95b8bb22617a05fcc022f65c53adf6ef26ece15ab69374538533033a6'
     }
     ```
-* #### Utils.createPublicKey(secret`<String>`) 公钥转私钥
+* #### Utils.createPublicKey(secret`<String>`) 私钥转公钥
     ```js
     Utils.createPublicKey(kofo.secret);
     ```

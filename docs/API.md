@@ -9,10 +9,18 @@
       secret: 'dafd1ae95b8bb22617a05fcc022f65c53adf6ef26ece15ab69374538533033a6'
     }
     ```
-
-* #### Utils.createKofoIdByPubKey(publicKey`<String>`) 通过公钥转换kofoId
+* #### Utils.createPublicKey(secret`<String>`) 公钥转私钥
     ```js
-    //Create Kofo Id by public key
+    Utils.createPublicKey(kofo.secret);
+    ```
+
+* #### Utils.createKofoIdBySecret(secret`<String>`) 私钥转kofoId
+    ```js
+    Utils.createKofoIdBySecret(kofo.secret);
+    ```
+
+* #### Utils.createKofoIdByPubKey(publicKey`<String>`) 公钥转kofoId
+    ```js
     Utils.createKofoIdByPubKey(kofo.pubkey);
     ```
 

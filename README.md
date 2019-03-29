@@ -1,4 +1,4 @@
-# KOFO SDK APIS
+# KOFO SDK
 ## Install and import
 
 ```bash
